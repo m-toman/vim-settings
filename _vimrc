@@ -28,34 +28,19 @@ function MyDiff()
   silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
 endfunction
 
+" encoding
+set encoding=UTF-8
+set hidden
+
+"Put vim files in the temp directory instead of the current directory
+set dir=%TMP%
+set backupdir=%TMP%
+
 " personal settings
 syntax enable
-set background=dark
-colorscheme solarized
+#set background=dark
+colorscheme jellybeans
 
 set expandtab
 set shiftwidth=2
 set softtabstop=2
-
-"========== from vim-LaTeX ===========
-
-" REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
-filetype plugin on
-
-" IMPORTANT: win32 users will need to have 'shellslash' set so that latex
-" can be called correctly.
-set shellslash
-
-" IMPORTANT: grep will sometimes skip displaying the file name if you
-" search in a singe file. This will confuse Latex-Suite. Set your grep
-" program to always generate a file-name.
-set grepprg=grep\ -nH\ $*
-
-" OPTIONAL: This enables automatic indentation as you type.
-"filetype indent on
-
-" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
-" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
-" The following changes the default filetype back to 'tex':
-let g:tex_flavor='latex'
-
