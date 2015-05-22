@@ -38,7 +38,6 @@ set backupdir=%TMP%
 
 " personal settings
 syntax enable
-#set background=dark
 colorscheme jellybeans
 
 set expandtab
