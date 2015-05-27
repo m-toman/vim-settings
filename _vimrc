@@ -38,9 +38,17 @@ set backupdir=%TMP%
 
 " personal settings
 syntax enable
-#set background=dark
 colorscheme jellybeans
 
 set expandtab
 set shiftwidth=2
 set softtabstop=2
+
+if has('gui_running')
+  " set lines=60 columns=108 linespace=0
+  if has('gui_win32')
+    set guifont=DejaVu_Sans_Mono:h10:cANSI
+  else
+    set guifont=DejaVu\ Sans\ Mono\ 10
+  endif
+endif
