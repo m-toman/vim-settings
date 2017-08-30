@@ -1,55 +1,30 @@
 set nocompatible
-source $VIMRUNTIME/vimrc_example.vim
-source $VIMRUNTIME/mswin.vim
-behave mswin
 
-set diffexpr=MyDiff()
-function MyDiff()
-  let opt = '-a --binary '
-  if &diffopt =~ 'icase' | let opt = opt . '-i ' | endif
-  if &diffopt =~ 'iwhite' | let opt = opt . '-b ' | endif
-  let arg1 = v:fname_in
-  if arg1 =~ ' ' | let arg1 = '"' . arg1 . '"' | endif
-  let arg2 = v:fname_new
-  if arg2 =~ ' ' | let arg2 = '"' . arg2 . '"' | endif
-  let arg3 = v:fname_out
-  if arg3 =~ ' ' | let arg3 = '"' . arg3 . '"' | endif
-  let eq = ''
-  if $VIMRUNTIME =~ ' '
-    if &sh =~ '\<cmd'
-      let cmd = '""' . $VIMRUNTIME . '\diff"'
-      let eq = '"'
-    else
-      let cmd = substitute($VIMRUNTIME, ' ', '" ', '') . '\diff"'
-    endif
-  else
-    let cmd = $VIMRUNTIME . '\diff'
-  endif
-  silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
-endfunction
+filetype indent on 
 
-" encoding
-set encoding=UTF-8
-set hidden
+set bs=2
+set background=dark
+set ruler
+"set number
+"set colorcolumn=80
+set incsearch
 
-"Put vim files in the temp directory instead of the current directory
+autocmd Filetype python setlocal expandtab tabstop=4 shiftwidth=4 softtabstop=4
+autocmd Filetype cpp setlocal expandtab tabstop=3 shiftwidth=3
+autocmd Filetype c setlocal expandtab tabstop=3 shiftwidth=3
+autocmd Filetype sh setlocal expandtab tabstop=3 shiftwidth=3
+autocmd Filetype javascript setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+
+" use C-L to get back to command mode
+:imap <C-L> <Esc>
+
+
+" stay marked when using < > to indent
+vnoremap < <gv
+vnoremap > >gv
+
+syntax on
+
+" set temp files
 set dir=%TMP%
 set backupdir=%TMP%
-
-" personal settings
-syntax enable
-colorscheme jellybeans
-
-set expandtab
-set shiftwidth=2
-set softtabstop=2
-
-if has('gui_running')
-  " set lines=60 columns=108 linespace=0
-  if has('gui_win32')
-    set guifont=Consolas:h11
-    "set guifont=DejaVu_Sans_Mono:h10:cANSI
-  else
-    set guifont=DejaVu\ Sans\ Mono\ 10
-  endif
-endif
