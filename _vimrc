@@ -28,3 +28,15 @@ syntax on
 " set temp files
 set dir=%TMP%
 set backupdir=%TMP%
+
+color evening
+
+if has('gui_running')
+  " set lines=60 columns=108 linespace=0
+  if has('gui_win32')
+    set guifont=Consolas:h11
+    "set guifont=DejaVu_Sans_Mono:h10:cANSI
+  else
+    set guifont=DejaVu\ Sans\ Mono\ 10
+  endif
+endif
